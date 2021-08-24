@@ -2858,6 +2858,17 @@ TEST_F(AtenLtcTsTensorTest, TestEmpty) {
   });
 }
 
+TEST_F(AtenLtcTsTensorTest, TestZeroInPlace) {
+  torch::Tensor a = torch::zeros({2, 2}, torch::TensorOptions(torch::kFloat));
+
+  ForEachDevice([&](const torch::Device& device) {
+    torch::Tensor b = torch::ones({2, 2}, torch::TensorOptions(torch::kFloat));
+    torch::Tensor xla_b = CopyToDevice(b, device);
+    xla_b.zero_();
+    AllClose(a, xla_b);
+  });
+}
+
 TEST_F(AtenLtcTsTensorTest, TestZerosLike) {
   torch::Tensor a = torch::rand({2, 2}, torch::TensorOptions(torch::kFloat));
   torch::Tensor b = torch::zeros_like(a);
