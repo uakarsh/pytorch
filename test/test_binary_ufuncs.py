@@ -18,7 +18,7 @@ from torch.testing._internal.common_device_type import (
     instantiate_device_type_tests, onlyCUDA, onlyCPU, dtypes, dtypesIfCUDA,
     dtypesIfCPU, deviceCountAtLeast, precisionOverride, onlyOnCPUAndCUDA,
     skipCUDAIfRocm, skipIf, ops)
-from torch.testing import all_types_and_complex_and, integral_types_and
+from torch.testing._internal.dtype_getters import all_types_and_complex_and, integral_types_and
 from torch.testing._internal.common_methods_invocations import binary_ufuncs
 
 if TEST_SCIPY:
